@@ -126,6 +126,9 @@
       const status = await invoke("link_status");
       setLinkUi(status);
       if (status.enabled && Number(status.bpm) > 0) {
+        const candidate = state.micEnabled
+          ? Number(state.beatBpm)
+          : Number(browserEngine?.manualBpm || 0);
         const period = 60000 / Number(status.bpm);
         const fraction = ((Number(status.beat) % 1) + 1) % 1;
         const now = performance.now();
@@ -135,9 +138,6 @@
         state.lastBeatAt = now - fraction * period;
         state.nextBeatAt = now + (1 - fraction) * period;
         lastLinkTempo = Number(status.bpm);
-        const candidate = state.micEnabled
-          ? Number(state.beatBpm)
-          : Number(browserEngine?.manualBpm || 0);
         if (candidate > 0 && Math.abs(candidate - lastLinkTempo) > 1.0 && Date.now() - lastTempoSent > 1200) {
           lastTempoSent = Date.now();
           await invoke("link_set_tempo", { bpm: candidate });

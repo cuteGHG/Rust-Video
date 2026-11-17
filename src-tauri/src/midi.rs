@@ -58,7 +58,7 @@ impl MidiService {
         thread::Builder::new()
             .name("vj-studio-midi".into())
             .spawn(move || {
-                let mut connections: Vec<MidiInputConnection<AppHandle>> = Vec::new();
+                let mut connections: Vec<MidiInputConnection<()>> = Vec::new();
 
                 while let Ok(command) = rx.recv() {
                     match command {
@@ -155,7 +155,7 @@ pub fn list_inputs() -> Result<Vec<MidiPort>, String> {
 fn open_inputs(
     app: &AppHandle,
     selected: Option<&str>,
-) -> Result<(Vec<MidiInputConnection<AppHandle>>, Vec<String>), String> {
+) -> Result<(Vec<MidiInputConnection<()>>, Vec<String>), String> {
     let available = list_inputs()?;
     let targets: Vec<String> = match selected {
         Some(id) => available

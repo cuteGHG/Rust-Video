@@ -1,0 +1,17 @@
+[package]
+name = "vj-studio"
+version = "0.1.0"
+description = "VJ Studio desktop application"
+authors = ["cuteGHG"]
+edition = "2021"
+rust-version = "1.77"
+publish = false
+
+[build-dependencies]
+tauri-build = { version = "2" }
+
+[dependencies]
+tauri = { version = "2" }
+serde = { version = "1", features = ["derive"] }
+midir = "0.11"
+rusty_link = "0.4.9"

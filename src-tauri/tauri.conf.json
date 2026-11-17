@@ -26,7 +26,9 @@
   },
   "bundle": {
     "active": true,
-    "targets": ["nsis"],
+    "targets": [
+      "nsis"
+    ],
     "category": "Multimedia",
     "shortDescription": "Live Video Mixer",
     "longDescription": "VJ Studio desktop mixer with video layers, effects, MIDI and Ableton Link network sync.",
@@ -37,8 +39,12 @@
       },
       "nsis": {
         "displayLanguageSelector": false,
-        "languages": ["German", "English"]
+        "languages": [
+          "German",
+          "English"
+        ]
       }
-    }
+    },
+    "icon": []
   }
 }
